@@ -568,3 +568,21 @@ class ClientTest(TestCase):
         assert not frames[1]['in_app']
         assert not frames[2]['in_app']
         assert frames[3]['in_app']
+
+    def test_repos_configuration(self):
+        client = Client(repos={
+            '/foo/bar': {
+                'name': 'repo',
+            },
+            'raven': {
+                'name': 'getsentry/raven-python',
+            },
+        })
+        assert client.repos == {
+            '/foo/bar': {
+                'name': 'repo',
+            },
+            os.path.abspath(raven.__file__): {
+                'name': 'getsentry/raven-python',
+            },
+        }
