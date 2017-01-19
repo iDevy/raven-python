@@ -478,7 +478,7 @@ class Client(object):
                 # submission option of a list here is not supported by the
                 # internal sender.
                 data.setdefault('breadcrumbs', {'values': crumbs})
-
+        print data
         return data
 
     def transform(self, data):
@@ -705,6 +705,7 @@ class Client(object):
         """
         Serializes the message and passes the payload onto ``send_encoded``.
         """
+        print data
         message = self.encode(data)
 
         return self.send_encoded(message, auth_header=auth_header)
